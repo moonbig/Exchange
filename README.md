@@ -112,3 +112,9 @@ spring.jpa.hibernate.ddl-auto=update
 1. 20181106 提交项目中缺少的模块
 2. 20181112 开源ZTuoExchange_wallet代码
 3. 20181112 发布ZTuoExchange_操作手册
+
+
+捐赠支持
+BTC：3AU5QZb591Vs63SAzdhebBZpQ6qj9GVCNm
+LTC：33tZdhUBqhB2s3JoUEsuBhHQ75taW12WAc
+ETH：0x38d7f0c2d5054941717bde236a7f0aa94e89d5af
