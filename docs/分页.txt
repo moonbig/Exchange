@@ -1,0 +1,80 @@
+
+
+
+
+
+============================================== 分页 ==================================================
+    1.使用pageModel,Screen screen(根据业务自己创建)接受参数
+        @GetMapping("page")
+        public MessageResult page(
+                PageModel pageModel,
+                LegalWalletRechargeScreen screen) {
+            Predicate predicate = getPredicate(screen);
+            Page<LegalWalletRecharge> page = legalWalletRechargeService.findAll(predicate, pageModel);
+            return success(page);
+        }
+    2.处理条件 调用PredicateUtils.getPredicate 将断言List转Predicate
+        private Predicate getPredicate(LegalWalletWithdrawScreen screen) {
+            ArrayList<BooleanExpression> booleanExpressions = new ArrayList<>();
+            if (StringUtils.isNotBlank(screen.getUsername()))
+                booleanExpressions.add(QLegalWalletWithdraw.legalWalletWithdraw.member.username.eq(screen.getUsername()));
+            if (screen.getStatus() != null)
+                booleanExpressions.add(QLegalWalletWithdraw.legalWalletWithdraw.status.eq(screen.getStatus()));
+            if (screen.getCurrencyKind() != null)
+                booleanExpressions.add(QLegalWalletWithdraw.legalWalletWithdraw.currencyKind.eq(screen.getCurrencyKind()));
+            return PredicateUtils.getPredicate(booleanExpressions);
+        }
+
+    3.调用(service的)super.findAll(Predicate predicate, PageModel pageModel) 即可
+========================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@GetMapping("withdraw-records/page-query/test")
+    public MessageResult pageQueryTest(
+            @RequestParam(value = "pageNo", defaultValue = "1") Integer pageNo,
+            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
+            @RequestParam(value = "status", required = false) WithdrawStatus status) {
+        QueryDslContext queryDslContext = new QueryDslContext();
+        //查询字段
+        queryDslContext.add(QWithdrawRecord.withdrawRecord.id.as("id"));
+        queryDslContext.add(QWithdrawRecord.withdrawRecord.memberId.as("memberId"));
+        queryDslContext.add(QMember.member.username.as("memberUsername"));
+        queryDslContext.add(QMember.member.realName.as("memberRealName"));
+        queryDslContext.add(QWithdrawRecord.withdrawRecord.coin.as("coin"));
+        queryDslContext.add(QWithdrawRecord.withdrawRecord.totalAmount.as("totalAmount"));
+        queryDslContext.add(QWithdrawRecord.withdrawRecord.fee.as("fee"));
+        queryDslContext.add(QWithdrawRecord.withdrawRecord.arrivedAmount.as("arrivedAmount"));
+        queryDslContext.add(QWithdrawRecord.withdrawRecord.transactionNumber.as("transactionNumber"));
+        queryDslContext.add(QWithdrawRecord.withdrawRecord.createTime.as("createTime"));
+        queryDslContext.add(QWithdrawRecord.withdrawRecord.address.as("address"));
+        queryDslContext.add(QWithdrawRecord.withdrawRecord.remark.as("remark"));
+        queryDslContext.add(QWithdrawRecord.withdrawRecord.status.as("status"));
+        //查询表
+        queryDslContext.add(QWithdrawRecord.withdrawRecord);
+        queryDslContext.add(QMember.member);
+        //查询条件
+        queryDslContext.add(QWithdrawRecord.withdrawRecord.memberId.eq(QMember.member.id));
+        if (status != null)
+            queryDslContext.add(withdrawRecord.status.eq(status));
+        //排序
+        queryDslContext.add(QWithdrawRecord.withdrawRecord.id.desc());
+
+        PageListMapResult pageListMapResult = withdrawRecordService.queryDslForPageListResultTest(queryDslContext, pageNo, pageSize);
+        return success(pageListMapResult);
+    }
+
+

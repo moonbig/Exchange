@@ -1,0 +1,25 @@
+public interface UserInfoRepository extends CrudRepository<UserInfo, Long>{
+        @Query(value="SELECT new com.demo.test.Entity.ViewInfo(u,a)FROM "
+        + " UserInfo u, com.demo.test.Entity.Address a WHERE u.addressId = a.id) ")
+        List<ViewInfo> findViewInfo();
+        @Query("SELECT new com.demo.test.Entity.ViewInfo"
+        + "(u) FROM UserInfo u WHERE u.addressId IS NULL OR u.addressId NOT IN (SELECT a.id FROM Address a)")
+        List<ViewInfo> findViewInfoLeft();
+        @Query("SELECT new com.demo.test.Entity.ViewInfo"
+        + "(a) FROM Address a WHERE a.id NOT IN (SELECT u.addressId FROM UserInfo u WHERE u.addressId IS NOT NULL)")
+        List<ViewInfo> findViewInfoRight();
+
+         Path path = ExpressionUtils.path(Path.class,pageModel.getProperty());
+
+                OrderSpecifier orderSpecifier = new OrderSpecifier(pageModel.getDirection().isAscending() ? com.querydsl.core.types.Order.ASC : com.querydsl.core.types.Order.DESC, path);
+
+                predicates.add(qMember.id.eq(qMemberWallet.memberId));
+                JPAQuery<MemberWalletDTO> query = queryFactory.select(
+                                Projections.fields(MemberWalletDTO.class, qMember.id.as("memberId") ,qMember.username,qMember.realName,
+                                qMember.email,qMember.mobilePhone.as("mobilePhone"),qMemberWallet.balance,qMemberWallet.address,qMemberWallet.coin.unit
+                                ,qMemberWallet.frozenBalance.as("frozenBalance"),qMemberWallet.balance.add(qMemberWallet.frozenBalance).as("allBalance"))).from(QMember.member,QMemberWallet.memberWallet).where(predicates.toArray(new Predicate[predicates.size()])).orderBy(orderSpecifier);
+                List<MemberWalletDTO> content = query.offset((pageModel.getPageNo()-1)*pageModel.getPageSize()).limit(pageModel.getPageSize()).fetch();
+                long total = query.fetchCount();
+                return new PageImpl<>(content, pageModel.getPageable(), total);
+
+}
