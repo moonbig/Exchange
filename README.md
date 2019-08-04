@@ -18,7 +18,7 @@
 4. [ZTuoExchange_IOS](https://github.com/xunibidev/ZTuoExchange_IOS
 5. [ZTuoExchange_android](https://github.com/xunibidev/ZTuoExchange_android
 6. [ZTuoExchange_admin_web](https://github.com/xunibidev/ZTuoExchange_admin_web
-7. [ZTuoExchange_操作手册]
+7. [ZTuoExchange_操作手册](https://github.com/xunibidev/ZTuoExchange_manual
 
 # 三、项目维护计划
 1. ZTuoExchange_wallet项目计划2018年11月16日开源发布
