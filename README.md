@@ -1,4 +1,4 @@
-# 一、项目目标
+# 一、项目目标 安卓+IOS+PC+钱包
 1. ZTuo数字资产交易平台（以下简称“ZTuo”）是ZTuo团队历经了多个数字资产交易系统开发之后，通过不断的优化精简，首家开源的Java语言开发的数字货币交易所平台，支持当前多种主流的数字货币交易（测试环境受限于服务器的成本，目前支持USDT、ETH、BTC等主流货币，或根据实际情况开放一定测试币种）。
 2. ZTuo平台采用前后端分离的开发模式，后端负责业务实现，前端负责数据展示，同时包含有对应的APP。
 3. ZTuo团队遵循“技术共享”的理念，决定开源ZTuo平台，以供大家参考和学习（如用于商业化项目，对此所带来的法律和经济问题，ZTuo团队概不负责）。团队小伙伴的能力有限，不足之处也在所难免，这也是团队希望开源的最终目的，希望借助开源社区的程序猿/媛们的力量，对ZTuo平台提出更多的意见和想法，提出更好的改进方案和策略，在业务和技术上共同进步，共同提高！
@@ -11,14 +11,7 @@
 4. 前端：Vue、iView、less
 5. 同时提供IOS和Android版本。
 
-# 二、项目资源
-1. [ZTuoExchange_framework](https://github.com/xunibidev/ZTuoExchange_framework
-2. [ZTuoExchange_wallet](https://github.com/xunibidev/ZTuoExchange_wallet
-3. [ZTuoExchange_web](https://github.com/xunibidev/ZTuoExchange_web
-4. [ZTuoExchange_IOS](https://github.com/xunibidev/ZTuoExchange_IOS
-5. [ZTuoExchange_android](https://github.com/xunibidev/ZTuoExchange_android
-6. [ZTuoExchange_admin_web](https://github.com/xunibidev/ZTuoExchange_admin_web
-7. [ZTuoExchange_操作手册](https://github.com/xunibidev/ZTuoExchange_manual
+
 
 # 三、项目维护计划
 1. ZTuoExchange_wallet项目计划2018年11月16日开源发布
@@ -36,7 +29,7 @@
 
 # 五、关于我们
 * 为方便大家交流和学习，请各位小伙伴加入QQ交流群。
-* 区块链交易所技术交流【QQ群：735446452】。
+* 区块链交易所技术交流【QQ 2232965526 TG:@youguopay 蝙蝠:7235911】。
 
 
 # 六、开源许可协议
@@ -113,11 +106,7 @@ spring.jpa.hibernate.ddl-auto=update
 2. 20181112 开源ZTuoExchange_wallet代码
 3. 20181112 发布ZTuoExchange_操作手册
 
-
-捐赠支持
-
-BTC：3AU5QZb591Vs63SAzdhebBZpQ6qj9GVCNm
-
-LTC：33tZdhUBqhB2s3JoUEsuBhHQ75taW12WAc
-
-ETH：0x38d7f0c2d5054941717bde236a7f0aa94e89d5af
+## 联系方式
+QQ 2232965526 
+TG:@youguopay
+ 蝙蝠:7235911
